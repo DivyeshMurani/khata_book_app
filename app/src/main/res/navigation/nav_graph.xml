@@ -10,18 +10,32 @@
         android:name="io.selfmade.khatabook.fragments.HomeFragment"
         android:label="@string/str_khata_book"
         tools:layout="@layout/home_fragment">
-        <action
 
+        <action
+            app:destination="@id/createUserFragment"
             android:id="@+id/action_HomeFragment_to_CreateUserFragment"
-            app:destination="@id/CreateUserFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true" />
+
+        <action
+            app:destination="@id/addDebitFragment"
+            android:id="@+id/action_HomeFragment_to_AddDebitFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true" />
+
+
+
+
     </fragment>
 
     <fragment
-        android:id="@+id/CreateUserFragment"
+        android:id="@+id/createUserFragment"
         android:name="io.selfmade.khatabook.fragments.CreateUserFragment"
         android:label="@string/str_create_user"
         tools:layout="@layout/create_user_fragment">
@@ -31,10 +45,34 @@
             app:destination="@id/HomeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-
-
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true" />
+
     </fragment>
+
+        <fragment
+            android:id="@+id/addDebitFragment"
+            android:name="io.selfmade.khatabook.fragments.AddDebitFragment"
+            android:label="{label}"
+            tools:layout="@layout/fragment_add_debit">
+
+            <argument
+                android:name="data"
+                app:argType="io.selfmade.khatabook.model.CreateUser"
+                app:nullable="false" />
+
+            <action
+                android:id="@+id/action_AddDebitFragment_to_HomeFragment"
+                app:destination="@id/HomeFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@id/addDebitFragment"
+                app:popUpToInclusive="true" />
+
+        </fragment>
+
 
 </navigation>

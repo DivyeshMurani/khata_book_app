@@ -15,6 +15,7 @@ import io.selfmade.khatabook.activities.MainActivity
 import io.selfmade.khatabook.adapter.UserAdapter
 import io.selfmade.khatabook.databinding.HomeFragmentBinding
 import io.selfmade.khatabook.model.CreateUser
+import io.selfmade.khatabook.utilities.Logs
 import io.selfmade.khatabook.viewmodel.DataViewModel
 import io.selfmade.khatabook.viewmodel.ModelFactory
 
@@ -26,12 +27,14 @@ class HomeFragment : BaseFragment(), Observer<List<CreateUser>> {
     private lateinit var dataViewModel: DataViewModel
     private lateinit var list: ArrayList<CreateUser>
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        Logs.e("onCreateView :: called")
+
         super.onCreateView(inflater, container, savedInstanceState)
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,6 +46,8 @@ class HomeFragment : BaseFragment(), Observer<List<CreateUser>> {
         list = ArrayList()
 
         binding.mFab.setOnClickListener {
+//            activity.getNavController().navigate(R.id.CreateUserFragment)
+//            activity.getNavController().navigate(R.id.action_CreateUserFragment_to_HomeFragment)
             activity.getNavController().navigate(R.id.action_HomeFragment_to_CreateUserFragment)
 
         }

@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mToolbar: MaterialToolbar
 
-    private lateinit var navController: NavController
+    private var navController: NavController? = null
     private lateinit var navHostFragment: NavHostFragment
 
 
@@ -46,21 +46,29 @@ class MainActivity : BaseActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment)
-        NavigationUI.setupActionBarWithNavController(this@MainActivity, navController)
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            val it = navHostFragment!!.childFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        if (navController == null) {
+            navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment)
+            NavigationUI.setupActionBarWithNavController(this@MainActivity, navController!!)
+            navController!!.addOnDestinationChangedListener { controller, destination, arguments ->
+                val it =
+                    navHostFragment!!.childFragmentManager.findFragmentById(R.id.nav_host_fragment)
+            }
         }
+
+
     }
 
     fun getNavController(): NavController {
-        return navController
+        return navController!!
+    }
 
+    fun popBackFragment() {
+        navController!!.popBackStack()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navController!!.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

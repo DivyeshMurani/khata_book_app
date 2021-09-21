@@ -95,7 +95,6 @@ class AddDebtActivity : BaseActivity(), ItemSelectBottomDialog.OnItemSelect {
 
     private fun subTotal(itemOne: String, itemTwo: String) {
 
-
         var itOne = itemOne
         var itTwo = itemTwo
 
